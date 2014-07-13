@@ -24,11 +24,11 @@ public IIcon trollcon;
 		this.setBlockBounds(1F/16F * 3F, 0F, 1F/16F*3F, 1F-1F/16F*3F, 1F-1F/16F*3F, 1F-1F/16F*3F);
 	
 	}
+	@Override
 
-public void registerIcons(IIconRegister iconregister) {
-	iconregister.registerIcon(textureName);
+public void  registerBlockIcons(IIconRegister iconregister) {
 	
-	this.blockIcon = iconregister.registerIcon("hakrismod" + "textures/blocks/trollcanlol.png"); 
+	this.blockIcon = iconregister.registerIcon("hakrismod:trollcanlol"); 
 }
 
 @Override
