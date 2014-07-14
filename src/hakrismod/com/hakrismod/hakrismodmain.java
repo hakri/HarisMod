@@ -5,13 +5,17 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
+import com.hakrismod.handler.TickHandler;
+import com.hakrismod.tileentity.PolCanEntity;
 import com.hakrismod.tileentity.TrollCanEntity;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -34,14 +38,23 @@ public static final String modid = "hakrismod";
 		
 	};
 	
-
+//blocks
 	public static Block trollcan = new trollcan();
+	public static Block PolCan = new PolCan();
+	public static  PolCanEntity canentiy = new PolCanEntity();
+
+
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent z) {
 		GameRegistry.registerBlock(trollcan, "trollcan");
 		GameRegistry.registerTileEntity(TrollCanEntity.class, "trollcan");
-		proxy.RenderStuff();
+		GameRegistry.registerBlock(PolCan, "polcan");
+		GameRegistry.registerTileEntity(PolCanEntity.class, "PolCan");
+	 FMLCommonHandler.instance().bus().register(new TickHandler());
+		
+	
+	
 	}
 public void init(FMLInitializationEvent e) {
 	
