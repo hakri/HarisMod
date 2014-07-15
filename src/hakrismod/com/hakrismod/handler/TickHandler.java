@@ -9,8 +9,6 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 public class TickHandler {
 	@SubscribeEvent	
 	public void onTick(TickEvent e) {
-
-
 PolCanEntity.ticker++;
 
 

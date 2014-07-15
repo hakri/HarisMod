@@ -1,2 +1,3 @@
 tile.trollcan.name=trollcan
-itemGroup.BlockTab=BlockTab
+itemGroup.TrollTab=BlockTab
+tile.PollutionBlock.name=PollutionBlock

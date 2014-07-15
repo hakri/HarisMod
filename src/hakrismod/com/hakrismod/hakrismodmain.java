@@ -41,7 +41,7 @@ public static final String modid = "hakrismod";
 //blocks
 	public static Block trollcan = new trollcan();
 	public static Block PolCan = new PolCan();
-	public static  PolCanEntity canentiy = new PolCanEntity();
+	public static int polevel;
 
 
 	
@@ -51,6 +51,8 @@ public static final String modid = "hakrismod";
 		GameRegistry.registerTileEntity(TrollCanEntity.class, "trollcan");
 		GameRegistry.registerBlock(PolCan, "polcan");
 		GameRegistry.registerTileEntity(PolCanEntity.class, "PolCan");
+		proxy.RenderStuff();
+		
 	 FMLCommonHandler.instance().bus().register(new TickHandler());
 		
 	

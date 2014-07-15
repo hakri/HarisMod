@@ -1,5 +1,7 @@
 package com.hakrismod;
 
+import cofh.api.energy.TileEnergyHandler;
+
 import com.hakrismod.tileentity.PolCanEntity;
 
 import cpw.mods.fml.relauncher.Side;
@@ -29,8 +31,9 @@ public static int pollutionlevel = 100;
 	public PolCan() {
 		super(Material.rock);
 		this.setCreativeTab(hakrismodmain.BlockTab);
-		this.setBlockName("Pollution:");
+		this.setBlockName("PollutionBlock");
 		// TODO Auto-generated constructor stub
+		  
 	}
 
 
@@ -110,7 +113,7 @@ public static int pollutionlevel = 100;
   {
       super.onBlockPlacedBy(world, x, y, z, living, itemstack);
       PolCanEntity.ticker=0;
-  TileEntity te = new PolCanEntity();
+  
   
   
 
