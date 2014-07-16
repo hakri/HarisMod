@@ -2,7 +2,6 @@ package com.hakrismod.tileentity;
 
 import java.util.Iterator;
 import java.util.List;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -18,13 +17,28 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.ItemEnergyContainer;
 import cofh.api.energy.TileEnergyHandler;
 
 import com.hakrismod.*;
 
-public class PolCanEntity extends TileEnergyHandler {
+public class PolCanEntity extends CombinedSource {
 	
-	
+
+
+
+
+	public PolCanEntity(int ic2tier, int EUcap, int RFcap,
+			ForgeDirection direction, TileEntity recevier) {
+		super(ic2tier, EUcap, RFcap, direction, recevier);
+		ic2tier=3;
+		EUcap=100000000;
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 
 public static int ticker;
 	@Override
@@ -32,8 +46,10 @@ public static int ticker;
 public void updateEntity() {
 		
 if(!this.worldObj.isRemote) {
+cssource.updateEntity();
+	cssource.addEnergy(1000);
 
-storage.setEnergyStored(storage.getEnergyStored() + 10);
+
 		
 }
 		hakrismodmain.polevel++;
@@ -44,13 +60,6 @@ storage.setEnergyStored(storage.getEnergyStored() + 10);
 	
 public void producepollution()  {
 	double ranges = 3;
-	
-	
-	
- 
-
- 
-
 	List  list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(this.xCoord-ranges, this.yCoord - ranges, this.zCoord- ranges, this.xCoord + ranges, this.yCoord + ranges, this.zCoord + ranges));
     Iterator ilikepie = list.iterator();
     
@@ -64,20 +73,16 @@ public void producepollution()  {
 	
 		ticker = 0;
 		hakrismodmain.polevel--;
-		LogHelper.info(hakrismodmain.polevel);
 		
+	
 		
 	}
     
 		
 	
 	}
-@Override
-public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
 
-	return storage.extractEnergy(maxExtract, simulate);
-	
-}
+
 @Override
 public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
 
@@ -89,5 +94,44 @@ public boolean canConnectEnergy(ForgeDirection from) {
 
 	return true;
 }
+
+
+@Override
+
+public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+	
+		
+from = ForgeDirection.getOrientation(blockMetadata);
+	 return lolstorage.extractEnergy(maxExtract,simulate);
 }
+
+@Override
+public void invalidate(){
+	cssource.invalidate();
+	super.invalidate();
+}
+@Override
+public void  writeToNBT(NBTTagCompound tag) {
+	super.writeToNBT(tag);
+	cssource.writeToNBT(tag);
+	lolstorage.writeToNBT(tag);
+}
+@Override
+public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+	return true;
+}
+@Override
+public int getEnergyStored(ForgeDirection from) {
+	// TODO Auto-generated method stub
+	return lolstorage.getEnergyStored();
+}
+
+@Override
+public int getMaxEnergyStored(ForgeDirection from) {
+	// TODO Auto-generated method stub
+	return lolstorage.getMaxEnergyStored();
+}
+
+}
+
 

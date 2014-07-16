@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 import com.hakrismod.handler.TickHandler;
+import com.hakrismod.tileentity.CombinedSource;
 import com.hakrismod.tileentity.PolCanEntity;
 import com.hakrismod.tileentity.TrollCanEntity;
 
@@ -51,11 +52,11 @@ public static final String modid = "hakrismod";
 		GameRegistry.registerTileEntity(TrollCanEntity.class, "trollcan");
 		GameRegistry.registerBlock(PolCan, "polcan");
 		GameRegistry.registerTileEntity(PolCanEntity.class, "PolCan");
+		GameRegistry.registerTileEntity(CombinedSource.class,"cominedsource");
 		proxy.RenderStuff();
 		
 	 FMLCommonHandler.instance().bus().register(new TickHandler());
-		
-	
+			
 	
 	}
 public void init(FMLInitializationEvent e) {
