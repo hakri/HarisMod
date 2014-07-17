@@ -15,15 +15,15 @@ public class CombinedSource extends TileEntity implements IEnergyHandler{
 	protected EnergyStorage  lolstorage;
 	public BasicSource cssource;
 	public List<ForgeDirection> validinputs = Lists.newArrayList(ForgeDirection.UP,ForgeDirection.DOWN,ForgeDirection.EAST,ForgeDirection.WEST,ForgeDirection.NORTH,ForgeDirection.SOUTH);
-	public CombinedSource(int ic2tier, int EUcap, int RFcap,ForgeDirection direction, TileEntity recevier) {
+	public CombinedSource(int ic2tier, int EUcap, int RFcap,ForgeDirection direction, TileEntity recevier,double amount) {
 		super();
 		
 		this.lolstorage = new EnergyStorage(RFcap);
 		this.cssource = new BasicSource(this,RFcap/4,ic2tier);
 		this.cssource.setCapacity(EUcap);
-		this.lolstorage.setCapacity(EUcap/4);
+		this.lolstorage.setCapacity(EUcap*4);
 		this.cssource.emitsEnergyTo(recevier, direction);
-		
+		this.cssource.addEnergy(amount);
 	}
 
 
@@ -64,7 +64,7 @@ public void updateEntity() {
 	
 	if(!worldObj.isRemote) {
 	
-	lolstorage.setEnergyStored((int)this.lolstorage.getEnergyStored() +(int)this.cssource.getEnergyStored()*4);
+	lolstorage.setEnergyStored((int)this.lolstorage.getEnergyStored() +(int)this.cssource.getOfferedEnergy()/4);
 	}
 	
 }

@@ -23,22 +23,11 @@ import cofh.api.energy.TileEnergyHandler;
 import com.hakrismod.*;
 
 public class PolCanEntity extends CombinedSource {
-	
-
-
-
-
 	public PolCanEntity(int ic2tier, int EUcap, int RFcap,
 			ForgeDirection direction, TileEntity recevier) {
-		super(ic2tier, EUcap, RFcap, direction, recevier);
-		ic2tier=3;
-		EUcap=100000000;
+		super(4, 1, RFcap, direction, recevier, RFcap);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
 
 public static int ticker;
 	@Override
@@ -47,23 +36,18 @@ public void updateEntity() {
 		
 if(!this.worldObj.isRemote) {
 cssource.updateEntity();
-	cssource.addEnergy(1000);
-
-
-		
+	cssource.addEnergy(1);
 }
-		hakrismodmain.polevel++;
-	if(ticker >= 1000) {
-		this.producepollution();
+hakrismodmain.polevel++;
+if(ticker >= 1000) {
+this.producepollution();
 	}
 }
 	
 public void producepollution()  {
 	double ranges = 3;
 	List  list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(this.xCoord-ranges, this.yCoord - ranges, this.zCoord- ranges, this.xCoord + ranges, this.yCoord + ranges, this.zCoord + ranges));
-    Iterator ilikepie = list.iterator();
-    
-    
+    Iterator ilikepie = list.iterator();   
     if(hakrismodmain.polevel >=1000 && ilikepie.hasNext()) {
     	
     	EntityPlayer player = (EntityPlayer) ilikepie.next();
@@ -72,17 +56,9 @@ public void producepollution()  {
 		player.addPotionEffect(new PotionEffect(15,10000));
 	
 		ticker = 0;
-		hakrismodmain.polevel--;
-		
-	
-		
+		hakrismodmain.polevel--;		
+	}	
 	}
-    
-		
-	
-	}
-
-
 @Override
 public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
 
@@ -99,8 +75,8 @@ public boolean canConnectEnergy(ForgeDirection from) {
 @Override
 
 public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+
 	
-		
 from = ForgeDirection.getOrientation(blockMetadata);
 	 return lolstorage.extractEnergy(maxExtract,simulate);
 }
