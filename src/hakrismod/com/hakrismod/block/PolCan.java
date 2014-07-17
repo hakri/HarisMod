@@ -1,7 +1,8 @@
-package com.hakrismod;
+package com.hakrismod.block;
 
 import cofh.api.energy.TileEnergyHandler;
 
+import com.hakrismod.hakrismodmain;
 import com.hakrismod.tileentity.PolCanEntity;
 
 import cpw.mods.fml.relauncher.Side;

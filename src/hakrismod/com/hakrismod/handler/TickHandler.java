@@ -1,6 +1,6 @@
 package com.hakrismod.handler;
 
-import com.hakrismod.LogHelper;
+import com.hakrismod.helper.LogHelper;
 import com.hakrismod.tileentity.PolCanEntity;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

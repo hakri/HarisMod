@@ -1,4 +1,4 @@
-package com.hakrismod;
+package com.hakrismod.helper;
 
 import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;

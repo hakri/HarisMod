@@ -2,8 +2,8 @@ package com.hakrismod.render;
 
 import org.lwjgl.opengl.GL11;
 
-import com.hakrismod.LavaCanM;
 import com.hakrismod.hakrismodmain;
+import com.hakrismod.model.LavaCanM;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

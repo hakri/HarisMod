@@ -1,5 +1,6 @@
-package com.hakrismod;
+package com.hakrismod.block;
 
+import com.hakrismod.hakrismodmain;
 import com.hakrismod.tileentity.TrollCanEntity;
 
 import net.minecraft.block.Block;
@@ -21,7 +22,7 @@ public IIcon trollcon;
 		this.setResistance(8.0F);
 		this.setCreativeTab(hakrismodmain.BlockTab);
 		
-		this.setBlockBounds(1F/16F * 3F, 0F, 1F/16F*3F, 1F-1F/16F*3F, 1F-1F/16F*3F, 1F-1F/16F*3F);
+		
 	
 	}
 	@Override

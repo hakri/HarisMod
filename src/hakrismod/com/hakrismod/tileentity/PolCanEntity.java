@@ -1,5 +1,4 @@
 package com.hakrismod.tileentity;
-
 import java.util.Iterator;
 import java.util.List;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -26,17 +25,14 @@ public class PolCanEntity extends CombinedSource {
 	public PolCanEntity(int ic2tier, int EUcap, int RFcap,
 			ForgeDirection direction, TileEntity recevier) {
 		super(4, 1, RFcap, direction, recevier, RFcap);
-		// TODO Auto-generated constructor stub
 	}
-
 public static int ticker;
-	@Override
-	
+@Override	
 public void updateEntity() {
 		
 if(!this.worldObj.isRemote) {
 cssource.updateEntity();
-	cssource.addEnergy(1);
+	cssource.addEnergy(9000);
 }
 hakrismodmain.polevel++;
 if(ticker >= 1000) {
@@ -45,35 +41,28 @@ this.producepollution();
 }
 	
 public void producepollution()  {
-	double ranges = 3;
-	List  list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(this.xCoord-ranges, this.yCoord - ranges, this.zCoord- ranges, this.xCoord + ranges, this.yCoord + ranges, this.zCoord + ranges));
-    Iterator ilikepie = list.iterator();   
-    if(hakrismodmain.polevel >=1000 && ilikepie.hasNext()) {
-    	
-    	EntityPlayer player = (EntityPlayer) ilikepie.next();
-		player.addPotionEffect(new PotionEffect(17,100));
-		player.addPotionEffect(new PotionEffect(19,2000));
-		player.addPotionEffect(new PotionEffect(15,10000));
-	
+double ranges = 3;
+List  list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(this.xCoord-ranges, this.yCoord - ranges, this.zCoord- ranges, this.xCoord + ranges, this.yCoord + ranges, this.zCoord + ranges));
+Iterator ilikepie = list.iterator();   
+    if(hakrismodmain.polevel >=1000 && ilikepie.hasNext()) {    	
+EntityPlayer player = (EntityPlayer) ilikepie.next();
+player.addPotionEffect(new PotionEffect(17,100));
+player.addPotionEffect(new PotionEffect(19,2000));
+player.addPotionEffect(new PotionEffect(15,10000));	
 		ticker = 0;
 		hakrismodmain.polevel--;		
 	}	
 	}
 @Override
 public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-
 	return 0;
 }
-
 @Override
 public boolean canConnectEnergy(ForgeDirection from) {
 
 	return true;
 }
-
-
 @Override
-
 public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
 
 	
@@ -101,13 +90,9 @@ public int getEnergyStored(ForgeDirection from) {
 	// TODO Auto-generated method stub
 	return lolstorage.getEnergyStored();
 }
-
 @Override
 public int getMaxEnergyStored(ForgeDirection from) {
 	// TODO Auto-generated method stub
 	return lolstorage.getMaxEnergyStored();
 }
-
 }
-
-

@@ -17,7 +17,6 @@ public class CombinedSource extends TileEntity implements IEnergyHandler{
 	public List<ForgeDirection> validinputs = Lists.newArrayList(ForgeDirection.UP,ForgeDirection.DOWN,ForgeDirection.EAST,ForgeDirection.WEST,ForgeDirection.NORTH,ForgeDirection.SOUTH);
 	public CombinedSource(int ic2tier, int EUcap, int RFcap,ForgeDirection direction, TileEntity recevier,double amount) {
 		super();
-		
 		this.lolstorage = new EnergyStorage(RFcap);
 		this.cssource = new BasicSource(this,RFcap/4,ic2tier);
 		this.cssource.setCapacity(EUcap);
@@ -25,48 +24,36 @@ public class CombinedSource extends TileEntity implements IEnergyHandler{
 		this.cssource.emitsEnergyTo(recevier, direction);
 		this.cssource.addEnergy(amount);
 	}
-
-
 	@Override
 	public boolean canConnectEnergy(ForgeDirection from) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
-
 	@Override
 	public int receiveEnergy(ForgeDirection from, int maxReceive,
-			boolean simulate) {
-		// TODO Auto-generated method stub
+			boolean simulate) {	
 		return 0;
 	}
-
 	@Override
 	public int extractEnergy(ForgeDirection from, int maxExtract,
-			boolean simulate) {
-		// TODO Auto-generated method stub
+			boolean simulate) {	
 		return lolstorage.extractEnergy(maxExtract, simulate);
 	}
-
 	@Override
 	public int getEnergyStored(ForgeDirection from) {
-		// TODO Auto-generated method stub
+		
 		return lolstorage.getEnergyStored();
 	}
-
 	@Override
 	public int getMaxEnergyStored(ForgeDirection from) {
-		// TODO Auto-generated method stub
 		return lolstorage.getMaxEnergyStored();
 	}
 @Override	
 public void updateEntity() {
 	cssource.updateEntity();
-	
-	if(!worldObj.isRemote) {
-	
+	if(!worldObj.isRemote) {	
 	lolstorage.setEnergyStored((int)this.lolstorage.getEnergyStored() +(int)this.cssource.getOfferedEnergy()/4);
 	}
-	
 }
 @Override
 public void invalidate(){
@@ -82,9 +69,7 @@ public void onChunkUnload(){
 public void  readFromNBT(NBTTagCompound tag) {
 	super.readFromNBT(tag);
 	cssource.readFromNBT(tag);
-	lolstorage.readFromNBT(tag);
-	
-	
+	lolstorage.readFromNBT(tag);	
 }
 @Override
 public void  writeToNBT(NBTTagCompound tag) {
@@ -92,9 +77,7 @@ public void  writeToNBT(NBTTagCompound tag) {
 	cssource.writeToNBT(tag);
 	lolstorage.writeToNBT(tag);
 }
-
 public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
 	return true;
 }
-
 }
